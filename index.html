@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Invitation | Aarav & Diya</title>
+    <!-- Google Fonts for Royal Indian Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Great+Vibes&family=Marcellus&family=Rozha+One&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- 1. ROYAL WAX SEAL ENVELOPE OVERLAY (Animation 1) -->
+    <div id="envelopeOverlay" class="envelope-overlay">
+        <div class="envelope-wrapper">
+            <div class="envelope" id="envelope">
+                <div class="envelope-base"></div>
+                <div class="envelope-letter" id="envelopeLetter">
+                    <p class="letter-ganesha">॥ श्री गणेशाय नमः ॥</p>
+                    <p class="letter-guest-to" id="envelopeGuestName">॥ सस्नेह निमंत्रण ॥</p>
+                    <h2 class="letter-title">Aarav &amp; Diya</h2>
+                    <div class="letter-sub">Cordially invite you</div>
+                    <p class="letter-date">14 . 02 . 2027</p>
+                    <p class="letter-venue">The Grand Heritage Palace, Jaipur</p>
+                </div>
+                <div class="envelope-pocket"></div>
+                <div class="envelope-flap" id="envelopeFlap"></div>
+                <!-- 3D Wax Seal Button -->
+                <div class="wax-seal" id="waxSeal" role="button" tabindex="0" title="Click to Open Shahi Invitation">
+                    <div class="seal-circle">
+                        <span class="seal-monogram">A &hearts; D</span>
+                        <span class="seal-label">OPEN</span>
+                    </div>
+                </div>
+            </div>
+            <p class="envelope-hint">✨ शाही निमंत्रण खोलने के लिए सील पर क्लिक करें ✨<br><span style="font-size:0.85em; opacity:0.85;">(Click the Golden Wax Seal to Open)</span></p>
+            <button id="skipEnvelopeBtn" class="skip-envelope-btn">Skip directly to invitation &rarr;</button>
+        </div>
+    </div>
+
+    <!-- Floating Audio Control & Petal Toggle -->
+    <div class="floating-controls">
+        <button id="musicToggle" class="control-btn" title="Toggle Music">
+            <i class="fas fa-music"></i>
+            <span class="btn-label">Music</span>
+        </button>
+        <button id="petalToggle" class="control-btn" title="Toggle Rose Petals">
+            <i class="fas fa-spa"></i>
+            <span class="btn-label">Petals</span>
+        </button>
+    </div>
+
+    <!-- Audio element with 'Charon Dulha Me Badka Kamaal Sakhiya' -->
+    <audio id="bgMusic" loop preload="auto">
+        <source src="raag_geet.mp3" type="audio/mpeg">
+        <source src="raag_geet.wav" type="audio/wav">
+    </audio>
+
+    <!-- Canvas for Floating Marigold & Rose Petals & Golden Stardust -->
+    <canvas id="petalCanvas"></canvas>
+
+    <!-- 2. CORNER GLOWING DIYAS (Animation 2) -->
+    <div class="corner-diya diya-left" aria-hidden="true">
+        <div class="diya-glow"></div>
+        <svg class="diya-svg" viewBox="0 0 100 80">
+            <defs>
+                <radialGradient id="flameGrad" cx="50%" cy="80%" r="70%">
+                    <stop offset="0%" stop-color="#ffffff" />
+                    <stop offset="30%" stop-color="#ffe600" />
+                    <stop offset="65%" stop-color="#ff7b00" />
+                    <stop offset="100%" stop-color="rgba(255, 0, 0, 0)" />
+                </radialGradient>
+                <linearGradient id="brassGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#fdf498" />
+                    <stop offset="40%" stop-color="#d4af37" />
+                    <stop offset="100%" stop-color="#8c6d23" />
+                </linearGradient>
+            </defs>
+            <path class="diya-flame" d="M50,8 Q64,34 50,48 Q36,34 50,8 Z" fill="url(#flameGrad)" />
+            <circle class="diya-core" cx="50" cy="38" r="3.5" fill="#ffffff" />
+            <path d="M18,48 C18,70 82,70 82,48 C76,55 64,59 50,59 C36,59 24,55 18,48 Z" fill="url(#brassGrad)" stroke="#4a0e17" stroke-width="1.2" />
+            <ellipse cx="50" cy="48" rx="32" ry="6" fill="#6d1220" />
+            <path d="M42,67 L58,67 L55,73 L45,73 Z" fill="url(#brassGrad)" />
+        </svg>
+    </div>
+
+    <div class="corner-diya diya-right" aria-hidden="true">
+        <div class="diya-glow"></div>
+        <svg class="diya-svg" viewBox="0 0 100 80">
+            <path class="diya-flame" d="M50,8 Q64,34 50,48 Q36,34 50,8 Z" fill="url(#flameGrad)" />
+            <circle class="diya-core" cx="50" cy="38" r="3.5" fill="#ffffff" />
+            <path d="M18,48 C18,70 82,70 82,48 C76,55 64,59 50,59 C36,59 24,55 18,48 Z" fill="url(#brassGrad)" stroke="#4a0e17" stroke-width="1.2" />
+            <ellipse cx="50" cy="48" rx="32" ry="6" fill="#6d1220" />
+            <path d="M42,67 L58,67 L55,73 L45,73 Z" fill="url(#brassGrad)" />
+        </svg>
+    </div>
+
+    <div class="royal-wrapper">
+        <!-- Auspicious Header -->
+        <header class="auspicious-header">
+            <!-- 3. ROTATING BACKGROUND MANDALA (Animation 3) -->
+            <div class="mandala-spin-bg header-mandala" aria-hidden="true">
+                <svg viewBox="0 0 200 200" class="mandala-vector">
+                    <circle cx="100" cy="100" r="95" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="2,4" />
+                    <circle cx="100" cy="100" r="85" fill="none" stroke="currentColor" stroke-width="1.5" />
+                    <circle cx="100" cy="100" r="70" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="4,4" />
+                    <circle cx="100" cy="100" r="50" fill="none" stroke="currentColor" stroke-width="2" />
+                    <!-- 12 Concentric Petals -->
+                    <g stroke="currentColor" stroke-width="1.2" fill="none">
+                        <path d="M100,50 Q105,75 100,100 Q95,75 100,50" />
+                        <path d="M100,50 Q105,75 100,100 Q95,75 100,50" transform="rotate(30 100 100)" />
+                        <path d="M100,50 Q105,75 100,100 Q95,75 100,50" transform="rotate(60 100 100)" />
+                        <path d="M100,50 Q105,75 100,100 Q95,75 100,50" transform="rotate(90 100 100)" />
+                        <path d="M100,50 Q105,75 100,100 Q95,75 100,50" transform="rotate(120 100 100)" />
+                        <path d="M100,50 Q105,75 100,100 Q95,75 100,50" transform="rotate(150 100 100)" />
+                        <path d="M100,50 Q105,75 100,100 Q95,75 100,50" transform="rotate(180 100 100)" />
+                        <path d="M100,50 Q105,75 100,100 Q95,75 100,50" transform="rotate(210 100 100)" />
+                        <path d="M100,50 Q105,75 100,100 Q95,75 100,50" transform="rotate(240 100 100)" />
+                        <path d="M100,50 Q105,75 100,100 Q95,75 100,50" transform="rotate(270 100 100)" />
+                        <path d="M100,50 Q105,75 100,100 Q95,75 100,50" transform="rotate(300 100 100)" />
+                        <path d="M100,50 Q105,75 100,100 Q95,75 100,50" transform="rotate(330 100 100)" />
+                    </g>
+                    <!-- Outer Ornamental Rays -->
+                    <g stroke="currentColor" stroke-width="1.5">
+                        <line x1="100" y1="5" x2="100" y2="15" />
+                        <line x1="100" y1="5" x2="100" y2="15" transform="rotate(30 100 100)" />
+                        <line x1="100" y1="5" x2="100" y2="15" transform="rotate(60 100 100)" />
+                        <line x1="100" y1="5" x2="100" y2="15" transform="rotate(90 100 100)" />
+                        <line x1="100" y1="5" x2="100" y2="15" transform="rotate(120 100 100)" />
+                        <line x1="100" y1="5" x2="100" y2="15" transform="rotate(150 100 100)" />
+                        <line x1="100" y1="5" x2="100" y2="15" transform="rotate(180 100 100)" />
+                        <line x1="100" y1="5" x2="100" y2="15" transform="rotate(210 100 100)" />
+                        <line x1="100" y1="5" x2="100" y2="15" transform="rotate(240 100 100)" />
+                        <line x1="100" y1="5" x2="100" y2="15" transform="rotate(270 100 100)" />
+                        <line x1="100" y1="5" x2="100" y2="15" transform="rotate(300 100 100)" />
+                        <line x1="100" y1="5" x2="100" y2="15" transform="rotate(330 100 100)" />
+                    </g>
+                </svg>
+            </div>
+
+            <div class="ganesha-symbol">
+                <!-- SVG Ganesha Icon in Gold -->
+                <svg viewBox="0 0 100 100" class="ganesha-svg">
+                    <circle cx="50" cy="50" r="46" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-dasharray="3,3" />
+                    <path
+                        d="M50 20 C40 20 35 28 35 38 C35 52 45 62 48 76 C49 80 52 82 55 80 C58 78 57 73 54 68 C50 62 45 54 45 42 C45 34 49 28 54 28 C59 28 62 32 62 38 C62 44 59 47 56 47 C53 47 51 45 51 42"
+                        fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" />
+                    <circle cx="43" cy="33" r="2" fill="currentColor" />
+                    <path d="M50 14 L50 24 M46 17 L54 17" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" />
+                    <path d="M60 38 Q67 40 68 47 Q69 56 62 60" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" />
+                    <path d="M33 40 Q26 43 28 52 Q30 58 36 60" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" />
+                    <circle cx="50" cy="27" r="1.5" fill="#c41e3a" />
+                </svg>
+            </div>
+            <p class="ganesha-mantra">॥ श्री गणेशाय नमः ॥</p>
+            <p class="sub-mantra">वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ। निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा॥</p>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="ornamental-frame">
+                <!-- Personalized Guest Greeting Banner -->
+                <div class="guest-welcome-banner" id="guestWelcomeBanner">
+                    <span class="guest-badge-icon"><i class="fas fa-heart"></i></span>
+                    <div class="guest-text-group">
+                        <span class="guest-sub-label">॥ सस्नेह सादर निमंत्रण पत्र ॥</span>
+                        <h4 class="guest-display-title" id="guestDisplayTitle">आदरणीय अतिथि देवो भवः</h4>
+                    </div>
+                </div>
+
+                <span class="invite-quote">Two Souls, One Heart, An Eternal Bond</span>
+                <p class="invite-lead">We cordially invite you and your family to celebrate the wedding ceremony of</p>
+
+                <h1 class="couple-names">
+                    <span class="groom-name">Aarav</span>
+                    <span class="ampersand">&</span>
+                    <span class="bride-name">Diya</span>
+                </h1>
+
+                <div class="royal-divider">
+                    <span class="divider-line"></span>
+                    <i class="fas fa-om divider-icon"></i>
+                    <span class="divider-line"></span>
+                </div>
+
+                <div class="wedding-details-badge">
+                    <div class="date-badge">
+                        <i class="far fa-calendar-alt"></i>
+                        <span>Sunday, 14 February 2027</span>
+                    </div>
+                    <div class="venue-badge">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>The Grand Heritage Palace, Jaipur, Rajasthan</span>
+                    </div>
+                </div>
+
+                <!-- Live Countdown Timer -->
+                <div class="countdown-container">
+                    <h3 class="countdown-title">The Auspicious Moment Arrives In</h3>
+                    <div class="timer-grid" id="timerGrid">
+                        <div class="timer-box">
+                            <span class="timer-num" id="days">00</span>
+                            <span class="timer-label">Days</span>
+                        </div>
+                        <div class="timer-colon">:</div>
+                        <div class="timer-box">
+                            <span class="timer-num" id="hours">00</span>
+                            <span class="timer-label">Hours</span>
+                        </div>
+                        <div class="timer-colon">:</div>
+                        <div class="timer-box">
+                            <span class="timer-num" id="minutes">00</span>
+                            <span class="timer-label">Minutes</span>
+                        </div>
+                        <div class="timer-colon">:</div>
+                        <div class="timer-box">
+                            <span class="timer-num" id="seconds">00</span>
+                            <span class="timer-label">Seconds</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="action-buttons-hero">
+                    <a href="#events" class="royal-btn primary-btn"><i class="fas fa-calendar-check"></i> Wedding Events</a>
+                    <a href="#rsvp" class="royal-btn secondary-btn"><i class="fas fa-envelope-open-text"></i> RSVP Now</a>
+                    <button id="whatsappShareBtn" class="royal-btn whatsapp-btn"><i class="fab fa-whatsapp"></i> WhatsApp Invite</button>
+                    <button id="celebrateBtn" class="royal-btn celebration-btn"><i class="fas fa-glass-cheers"></i> 🎆 Bless &amp; Celebrate</button>
+                    <button id="addToCalBtn" class="royal-btn outline-btn"><i class="far fa-bell"></i> Add to Calendar</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Auspicious Invitation Letter -->
+        <section class="invitation-letter-section">
+            <div class="section-card letter-card">
+                <div class="corner-ornament top-left"></div>
+                <div class="corner-ornament top-right"></div>
+                <div class="corner-ornament bottom-left"></div>
+                <div class="corner-ornament bottom-right"></div>
+
+                <h2 class="section-heading">With Joyful Hearts</h2>
+                <div class="gold-line"></div>
+
+                <p class="letter-text">
+                    "With the divine blessings of our ancestors and elders, we request the honor of your presence and
+                    blessings as our children step into a sacred union of love, respect, and companionship."
+                </p>
+                <div class="families-wrapper">
+                    <div class="family-column">
+                        <h4>Groom's Family</h4>
+                        <p class="family-names">Smt. Sunita & Shri Rajesh Sharma</p>
+                        <p class="family-note">Invite with immense warmth & joy</p>
+                    </div>
+                    <div class="family-center-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div class="family-column">
+                        <h4>Bride's Family</h4>
+                        <p class="family-names">Smt. Meenakshi & Shri Vikram Verma</p>
+                        <p class="family-note">Welcome you with wholehearted affection</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- The Couple Section -->
+        <section class="couple-section" id="couple">
+            <h2 class="section-heading">The Bride & Groom</h2>
+            <p class="section-subheading">Two hearts intertwining for a lifetime of laughter, joy & togetherness</p>
+            <div class="gold-line"></div>
+
+            <div class="couple-cards-grid">
+                <!-- Groom Card -->
+                <div class="profile-card">
+                    <div class="profile-image-container">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=700&q=80"
+                            alt="Groom - Aarav" class="profile-img">
+                        <div class="profile-frame"></div>
+                    </div>
+                    <h3 class="profile-title">Aarav Sharma</h3>
+                    <p class="profile-sub">Son of Smt. Sunita & Shri Rajesh Sharma</p>
+                    <p class="profile-bio">
+                        "An adventurous spirit with a heart full of joy, ready to embark on life's most beautiful
+                        expedition with his best friend."
+                    </p>
+                </div>
+
+                <div class="couple-heart-divider">
+                    <div class="mandala-ring">
+                        <i class="fas fa-rings-wedding">💍</i>
+                    </div>
+                </div>
+
+                <!-- Bride Card -->
+                <div class="profile-card">
+                    <div class="profile-image-container">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=700&q=80"
+                            alt="Bride - Diya" class="profile-img">
+                        <div class="profile-frame"></div>
+                    </div>
+                    <h3 class="profile-title">Diya Verma</h3>
+                    <p class="profile-sub">Daughter of Smt. Meenakshi & Shri Vikram Verma</p>
+                    <p class="profile-bio">
+                        "A graceful soul who brings warmth and smiles wherever she goes, eager to write a new chapter of
+                        forever."
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Event Timeline / Celebrations -->
+        <section class="events-section" id="events">
+            <h2 class="section-heading">Wedding Festivities</h2>
+            <p class="section-subheading">Join us in each auspicious milestone of our joyous celebration</p>
+            <div class="gold-line"></div>
+
+            <!-- 3. ROYAL BAARAT & DOLI PROCESSION (Animation 3) -->
+            <div class="baraat-procession-banner" aria-label="Royal Baraat & Doli Procession">
+                <div class="baraat-scroll-track">
+                    <!-- Set 1 of Procession -->
+                    <div class="baraat-group">
+                        <span class="procession-icon trumpeter"><i class="fas fa-bullhorn"></i>🎺</span>
+                        <span class="procession-text">शुभ विवाह बारात</span>
+                        <span class="procession-icon dholak">🥁</span>
+                        <span class="procession-icon groom-horse">🏇👑</span>
+                        <span class="procession-label">Aarav Ki Baarat</span>
+                        <span class="procession-icon elephant">🐘✨</span>
+                        <span class="procession-icon chattra">⛱️</span>
+                        <span class="procession-icon shehnai">🎶</span>
+                        <span class="procession-icon doli">👑🌺 [ 👰 Diya Ki Doli ] 🌺👑</span>
+                        <span class="procession-icon dance">💃🕺</span>
+                        <span class="procession-sparkle">✨🌟✨</span>
+                    </div>
+                    <!-- Set 2 for seamless loop -->
+                    <div class="baraat-group">
+                        <span class="procession-icon trumpeter"><i class="fas fa-bullhorn"></i>🎺</span>
+                        <span class="procession-text">शुभ विवाह बारात</span>
+                        <span class="procession-icon dholak">🥁</span>
+                        <span class="procession-icon groom-horse">🏇👑</span>
+                        <span class="procession-label">Aarav Ki Baarat</span>
+                        <span class="procession-icon elephant">🐘✨</span>
+                        <span class="procession-icon chattra">⛱️</span>
+                        <span class="procession-icon shehnai">🎶</span>
+                        <span class="procession-icon doli">👑🌺 [ 👰 Diya Ki Doli ] 🌺👑</span>
+                        <span class="procession-icon dance">💃🕺</span>
+                        <span class="procession-sparkle">✨🌟✨</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-container">
+                <!-- Event 1: Haldi -->
+                <div class="timeline-item">
+                    <div class="timeline-icon haldi-theme">
+                        <i class="fas fa-sun"></i>
+                    </div>
+                    <div class="timeline-card">
+                        <span class="event-tag haldi-tag">Pithothi & Glow</span>
+                        <h3 class="event-name">Haldi Ceremony</h3>
+                        <div class="event-time-loc">
+                            <p><i class="far fa-calendar-check"></i> Friday, 12 Feb 2027 • 10:00 AM</p>
+                            <p><i class="fas fa-map-pin"></i> Courtyard Gardens, The Grand Heritage</p>
+                            <p class="event-dresscode"><i class="fas fa-tshirt"></i> <strong>Dress Code:</strong>
+                                Traditional Shades of Yellow & Sunshine</p>
+                        </div>
+                        <p class="event-desc">An auspicious morning filled with turmeric paste, laughter, traditional
+                            folk songs, and pure blessings.</p>
+                        <a href="https://maps.google.com/?q=Jaipur+Rajasthan" target="_blank" class="event-map-btn"><i
+                                class="fas fa-location-arrow"></i> View Location</a>
+                    </div>
+                </div>
+
+                <!-- Event 2: Mehendi & Sangeet -->
+                <div class="timeline-item">
+                    <div class="timeline-icon sangeet-theme">
+                        <i class="fas fa-guitar"></i>
+                    </div>
+                    <div class="timeline-card">
+                        <span class="event-tag sangeet-tag">Music & Beats</span>
+                        <h3 class="event-name">Mehendi & Sangeet Night</h3>
+                        <div class="event-time-loc">
+                            <p><i class="far fa-calendar-check"></i> Saturday, 13 Feb 2027 • 06:30 PM Onwards</p>
+                            <p><i class="fas fa-map-pin"></i> Royal Poolside Lawn, The Grand Heritage</p>
+                            <p class="event-dresscode"><i class="fas fa-tshirt"></i> <strong>Dress Code:</strong>
+                                Festive Glamour, Indo-Western & Green/Teal</p>
+                        </div>
+                        <p class="event-desc">Intricate henna designs, dazzling dance performances by family, dhol
+                            beats, and an evening of non-stop celebration.</p>
+                        <a href="https://maps.google.com/?q=Jaipur+Rajasthan" target="_blank" class="event-map-btn"><i
+                                class="fas fa-location-arrow"></i> View Location</a>
+                    </div>
+                </div>
+
+                <!-- Event 3: Baraat & Pheras -->
+                <div class="timeline-item highlight-item">
+                    <div class="timeline-icon wedding-theme">
+                        <i class="fas fa-fire-alt"></i>
+                    </div>
+                    <div class="timeline-card main-wedding-card">
+                        <span class="event-tag wedding-tag">The Holy Vows</span>
+                        <h3 class="event-name">Baraat, Varmala & Pheras</h3>
+                        <div class="event-time-loc">
+                            <p><i class="far fa-calendar-check"></i> Sunday, 14 Feb 2027</p>
+                            <p><i class="fas fa-clock"></i> Baraat: 05:00 PM | Varmala: 07:00 PM | Pheras: 09:30 PM</p>
+                            <p><i class="fas fa-map-pin"></i> Mandapam Hall, The Grand Heritage Palace</p>
+                            <p class="event-dresscode"><i class="fas fa-tshirt"></i> <strong>Dress Code:</strong> Royal
+                                Ethnic / Traditional Indian Splendor</p>
+                        </div>
+                        <p class="event-desc">Under the sacred canopy, witness the seven vows around the holy fire as
+                            two hearts become one.</p>
+                        <a href="https://maps.google.com/?q=Jaipur+Rajasthan" target="_blank" class="event-map-btn"><i
+                                class="fas fa-location-arrow"></i> View Location</a>
+                    </div>
+                </div>
+
+                <!-- Event 4: Reception -->
+                <div class="timeline-item">
+                    <div class="timeline-icon reception-theme">
+                        <i class="fas fa-glass-cheers"></i>
+                    </div>
+                    <div class="timeline-card">
+                        <span class="event-tag reception-tag">Grand Dinner</span>
+                        <h3 class="event-name">Blessings & Gala Reception</h3>
+                        <div class="event-time-loc">
+                            <p><i class="far fa-calendar-check"></i> Monday, 15 Feb 2027 • 07:30 PM Onwards</p>
+                            <p><i class="fas fa-map-pin"></i> Crystal Ballroom, The Grand Heritage</p>
+                            <p class="event-dresscode"><i class="fas fa-tshirt"></i> <strong>Dress Code:</strong>
+                                Elegant Evening Formals & Sarees</p>
+                        </div>
+                        <p class="event-desc">An evening of fine dining, heartfelt blessings, toasts, and celebrating
+                            the beginning of a lifetime journey.</p>
+                        <a href="https://maps.google.com/?q=Jaipur+Rajasthan" target="_blank" class="event-map-btn"><i
+                                class="fas fa-location-arrow"></i> View Location</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Photo Gallery -->
+        <section class="gallery-section" id="gallery">
+            <h2 class="section-heading">Memories & Moments</h2>
+            <p class="section-subheading">A glimpse into our beautiful journey of love and togetherness</p>
+            <div class="gold-line"></div>
+
+            <div class="gallery-grid">
+                <div class="gallery-item" data-caption="A lifetime of adventures begins here">
+                    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80"
+                        alt="Wedding Moment 1" loading="lazy">
+                    <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="gallery-item" data-caption="Joyful smiles & endless laughter">
+                    <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=800&q=80"
+                        alt="Wedding Moment 2" loading="lazy">
+                    <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="gallery-item" data-caption="Holding hands towards forever">
+                    <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?auto=format&fit=crop&w=800&q=80"
+                        alt="Wedding Moment 3" loading="lazy">
+                    <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="gallery-item" data-caption="Under the golden festive lights">
+                    <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=800&q=80"
+                        alt="Wedding Moment 4" loading="lazy">
+                    <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="gallery-item" data-caption="Blessed with love and warmth">
+                    <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=800&q=80"
+                        alt="Wedding Moment 5" loading="lazy">
+                    <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="gallery-item" data-caption="Two souls, one destiny">
+                    <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=800&q=80"
+                        alt="Wedding Moment 6" loading="lazy">
+                    <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+            </div>
+
+            <!-- Lightbox Modal -->
+            <div id="galleryModal" class="gallery-modal">
+                <span class="close-modal">&times;</span>
+                <img class="modal-content" id="modalImg" alt="Enlarged view">
+                <div id="modalCaption"></div>
+            </div>
+        </section>
+
+        <!-- Venue & Directions Section -->
+        <section class="venue-section" id="venue">
+            <h2 class="section-heading">Venue & Location</h2>
+            <p class="section-subheading">We look forward to welcoming you at our celebration destination</p>
+            <div class="gold-line"></div>
+
+            <div class="venue-grid">
+                <div class="venue-info-box">
+                    <div class="palace-icon"><i class="fas fa-archway"></i></div>
+                    <h3>The Grand Heritage Palace</h3>
+                    <p class="venue-address">
+                        <i class="fas fa-map-pin"></i> Amer Road, Jal Mahal Precinct, Jaipur, Rajasthan - 302002
+                    </p>
+                    <div class="venue-features">
+                        <div class="feat-item"><i class="fas fa-car"></i> Valet Parking Available</div>
+                        <div class="feat-item"><i class="fas fa-plane"></i> 30 Mins from Jaipur Int. Airport (JAI)</div>
+                        <div class="feat-item"><i class="fas fa-train"></i> 20 Mins from Jaipur Railway Station</div>
+                    </div>
+                    <div class="venue-actions">
+                        <a href="https://maps.google.com/?q=Amer+Road+Jaipur+Rajasthan" target="_blank"
+                            class="royal-btn primary-btn">
+                            <i class="fas fa-directions"></i> Get Driving Directions
+                        </a>
+                        <button id="copyAddressBtn" class="royal-btn outline-btn">
+                            <i class="far fa-copy"></i> Copy Address
+                        </button>
+                    </div>
+                </div>
+
+                <div class="venue-map-box">
+                    <iframe title="Wedding Venue Map"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d113824.23438466657!2d75.71775836250001!3d26.912433600000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396c4adf4c57e281%3A0xce1c63a0cf22e09!2sJaipur%2C%20Rajasthan!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+                        width="100%" height="340" style="border:0; border-radius: 12px;" allowfullscreen=""
+                        loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- RSVP Form Section -->
+        <section class="rsvp-section" id="rsvp">
+            <div class="rsvp-card">
+                <div class="corner-ornament top-left"></div>
+                <div class="corner-ornament top-right"></div>
+                <div class="corner-ornament bottom-left"></div>
+                <div class="corner-ornament bottom-right"></div>
+
+                <h2 class="section-heading">R.S.V.P</h2>
+                <p class="section-subheading">Kindly confirm your presence to help us prepare for your gracious arrival
+                </p>
+                <div class="gold-line"></div>
+
+                <form id="rsvpForm" class="rsvp-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="guestName"><i class="fas fa-user"></i> Full Name *</label>
+                            <input type="text" id="guestName" required placeholder="e.g. Ramesh Patel">
+                        </div>
+                        <div class="form-group">
+                            <label for="guestPhone"><i class="fas fa-phone-alt"></i> Phone / WhatsApp *</label>
+                            <input type="tel" id="guestPhone" required placeholder="e.g. +91 98765 43210">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="attendanceStatus"><i class="fas fa-check-circle"></i> Will you attend? *</label>
+                            <select id="attendanceStatus" required>
+                                <option value="joyfully_attending">Joyfully Attending with Family</option>
+                                <option value="attending_solo">Attending Solo</option>
+                                <option value="regretfully_declined">Regretfully Cannot Attend (Sending Wishes)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="guestCount"><i class="fas fa-users"></i> Number of Guests</label>
+                            <input type="number" id="guestCount" min="1" max="10" value="2">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label><i class="fas fa-calendar-check"></i> Functions you will grace with your
+                            presence:</label>
+                        <div class="checkbox-group">
+                            <label class="check-container">
+                                <input type="checkbox" name="events_attending" value="Haldi" checked>
+                                <span class="check-box"></span> Haldi
+                            </label>
+                            <label class="check-container">
+                                <input type="checkbox" name="events_attending" value="Sangeet" checked>
+                                <span class="check-box"></span> Mehendi & Sangeet
+                            </label>
+                            <label class="check-container">
+                                <input type="checkbox" name="events_attending" value="Wedding" checked>
+                                <span class="check-box"></span> Baraat & Phere
+                            </label>
+                            <label class="check-container">
+                                <input type="checkbox" name="events_attending" value="Reception" checked>
+                                <span class="check-box"></span> Gala Reception
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="guestMessage"><i class="fas fa-comment-heart"></i> Warm Wishes for the
+                            Couple</label>
+                        <textarea id="guestMessage" rows="3"
+                            placeholder="Write your heartfelt blessing or message here..."></textarea>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="royal-btn primary-btn submit-btn">
+                            <i class="fas fa-paper-plane"></i> Send RSVP & Blessings
+                        </button>
+                    </div>
+                </form>
+
+                <div id="rsvpSuccessAlert" class="rsvp-success-msg" style="display:none;">
+                    <i class="fas fa-check-circle success-icon"></i>
+                    <h3>Dhanyawad! Thank you for confirming!</h3>
+                    <p>We are delighted and look forward to celebrating together with you.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Wishes & Blessings Wall -->
+        <section class="wishes-wall-section" id="wishes">
+            <h2 class="section-heading">Blessings & Love</h2>
+            <p class="section-subheading">Warm wishes left by dear family & friends</p>
+            <div class="gold-line"></div>
+
+            <div class="wishes-grid" id="wishesGrid">
+                <!-- Preset wishes + dynamically added -->
+                <div class="wish-card">
+                    <p class="wish-text">"Wishing you both an eternity of love, joyous smiles, and unending harmony.
+                        Congratulations Aarav and Diya!"</p>
+                    <span class="wish-author">— Rajesh & Sunita Chawla</span>
+                </div>
+                <div class="wish-card">
+                    <p class="wish-text">"May your married life be filled with laughter and companionship. Can't wait to
+                        dance at the Sangeet!"</p>
+                    <span class="wish-author">— Priya & Rohan</span>
+                </div>
+                <div class="wish-card">
+                    <p class="wish-text">"A match made in heaven. May God shower endless blessings on your beautiful
+                        journey together."</p>
+                    <span class="wish-author">— Dadi Ji & Dada Ji</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="royal-footer">
+            <div class="footer-ganesha">॥ श्री गणेशाय नमः ॥</div>
+            <h3 class="footer-names">Aarav & Diya</h3>
+            <p class="footer-tagline">February 14, 2027 • Jaipur, Rajasthan</p>
+            <p class="footer-hashtags">#AaravWedsDiya &bull; #DiyaKiShaadi &bull; #AaravKiDulhaniya</p>
+            <div class="footer-contacts">
+                <p>For any queries or assistance regarding travel & stay:</p>
+                <p><i class="fas fa-phone"></i> +91 98765 00000 / +91 98765 11111</p>
+            </div>
+            <div class="footer-bottom">
+                <p>Created with heartfelt love & devotion</p>
+                <button id="adminPortalBtn" class="admin-portal-link"><i class="fas fa-lock"></i> Host Admin Portal (Guest List)</button>
+            </div>
+        </footer>
+    </div>
+
+    <!-- WHATSAPP SHARE & PERSONALIZED LINK MODAL -->
+    <div id="shareModal" class="royal-modal" style="display:none;" aria-hidden="true">
+        <div class="modal-backdrop" id="modalBackdrop"></div>
+        <div class="share-modal-card">
+            <span class="close-share-modal" id="closeShareModal">&times;</span>
+            <div class="share-modal-header">
+                <i class="fab fa-whatsapp whatsapp-icon-large"></i>
+                <h3>WhatsApp Invitation Generator</h3>
+                <p>Personalize this invitation with your guest's name before sending!</p>
+            </div>
+
+            <div class="share-form-group">
+                <label for="inviteGuestInput"><i class="fas fa-user-tag"></i> Guest or Family Name (e.g. Sharma Family, Ramesh Uncle)</label>
+                <input type="text" id="inviteGuestInput" placeholder="Enter guest name here...">
+            </div>
+
+            <div class="share-preview-box">
+                <span class="preview-badge"><i class="fas fa-eye"></i> Message Preview:</span>
+                <p class="preview-msg-text" id="previewMsgText"></p>
+            </div>
+
+            <div class="share-modal-actions">
+                <a id="directWhatsappSendBtn" href="#" target="_blank" class="royal-btn whatsapp-send-action">
+                    <i class="fab fa-whatsapp"></i> Send via WhatsApp
+                </a>
+                <button id="copyShareLinkBtn" class="royal-btn outline-btn">
+                    <i class="far fa-copy"></i> Copy Link Only
+                </button>
+            </div>
+            <p id="shareCopyAlert" class="share-copy-alert" style="display:none;"><i class="fas fa-check"></i> Link Copied to Clipboard!</p>
+        </div>
+    </div>
+
+    <!-- RSVP ADMIN DASHBOARD MODAL -->
+    <div id="adminModal" class="royal-modal" style="display:none;" aria-hidden="true">
+        <div class="modal-backdrop" id="adminModalBackdrop"></div>
+        <div class="admin-modal-card">
+            <span class="close-share-modal" id="closeAdminModal">&times;</span>
+            <div class="admin-modal-header">
+                <i class="fas fa-chart-pie admin-icon"></i>
+                <h3>RSVP &amp; Guest List Manager</h3>
+                <p>Manage confirmed guests, headcounts and export to Excel</p>
+            </div>
+
+            <!-- Stats Overview Grid -->
+            <div class="admin-stats-grid">
+                <div class="stat-card">
+                    <span class="stat-number" id="statTotalRsvp">0</span>
+                    <span class="stat-title">Total Responses</span>
+                </div>
+                <div class="stat-card attending-card">
+                    <span class="stat-number" id="statAttendingCount">0</span>
+                    <span class="stat-title">Attending Parties</span>
+                </div>
+                <div class="stat-card headcount-card">
+                    <span class="stat-number" id="statTotalHeadcount">0</span>
+                    <span class="stat-title">Total Headcount</span>
+                </div>
+                <div class="stat-card decline-card">
+                    <span class="stat-number" id="statDeclinedCount">0</span>
+                    <span class="stat-title">Regrets / Declined</span>
+                </div>
+            </div>
+
+            <!-- Action buttons -->
+            <div class="admin-actions-bar">
+                <button id="exportCsvBtn" class="royal-btn primary-btn"><i class="fas fa-file-excel"></i> Export to Excel (CSV)</button>
+                <button id="addSampleRsvpBtn" class="royal-btn outline-btn"><i class="fas fa-magic"></i> Add Sample RSVPs</button>
+                <button id="clearRsvpsBtn" class="royal-btn danger-btn"><i class="fas fa-trash-alt"></i> Clear List</button>
+            </div>
+
+            <!-- Guest List Table -->
+            <div class="table-responsive">
+                <table class="rsvp-table" id="rsvpTable">
+                    <thead>
+                        <tr>
+                            <th>Guest Name</th>
+                            <th>Phone</th>
+                            <th>Status</th>
+                            <th>Guests</th>
+                            <th>Events Attending</th>
+                            <th>Wishes / Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody id="rsvpTableBody">
+                        <!-- Populated by JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+
+</html>
